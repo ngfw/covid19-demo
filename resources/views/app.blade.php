@@ -7,7 +7,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
+    <script>
+        window.Laravel = {
+            csrfToken: '{{ csrf_token() }}'
+        }
+    </script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -17,14 +21,17 @@
     <!-- Scripts -->
     @routes
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="/js/datamaps.none.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
     @inertia
 
-    @env('local')
-    <script src="http://accident.test/js/bundle.js"></script>
-    @endenv
+    <script>
+        window.isMapRegistered = false;
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('countries', [CountryController::class, "search"]);
+Route::get('get-user-countries', [CountryController::class, "getUserCountries"])->middleware('auth:sanctum');
+Route::post('add-country', [CountryController::class, "addCountry"])->middleware('auth:sanctum');
+Route::post('remove-country', [CountryController::class, "removeCountry"])->middleware('auth:sanctum');
